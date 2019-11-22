@@ -1,0 +1,20 @@
+.inner {
+  text-align: left;
+  box-sizing: content-box;
+  margin: 0 10%;
+  align-content: center;
+}
+
+.outer {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fa;
+  min-height: 90vh;
+}
+
+.span {
+  display: inline;
+  align-items: center;
+  justify-content: center;
+}
