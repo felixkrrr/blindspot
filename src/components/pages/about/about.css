@@ -1,0 +1,10 @@
+.content {
+  text-align: left;
+  box-sizing: content-box;
+}
+
+.container {
+  justify-content: center;
+  display: inline-block;
+  background-color: #f8f9fa;
+}
