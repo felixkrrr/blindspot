@@ -9,9 +9,11 @@ class AdjectiveToggle extends Component {
     };
   }
 
-  selectAdjective = () => {
+  selectAdjective = props => {
     const newState = !this.state.toggle;
     this.setState({ toggle: newState });
+    this.state.toggle === false && this.props.onSelect(this.props.adjective);
+    this.state.toggle === true && this.props.onDeSelect(this.props.adjective);
   };
 
   render() {

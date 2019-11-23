@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 import NavBar from "./components/header/navbar/navbar";
-import Landing from "./components/pages/landing/landing";
-import About from "./components/pages/about/About";
+//import Landing from "./components/pages/landing/landing";
+//import About from "./components/pages/about/About";
 import AdjectiveToggleGroup from "./components/adjectivetogglegroup/_adjectivetogglegroup";
 
 import "./App.css";
