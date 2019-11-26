@@ -1,12 +1,18 @@
+//React
 import React, { Component } from "react";
 import NavBar from "./components/header/navbar/navbar";
-//import Landing from "./components/pages/landing/landing";
-//import About from "./components/pages/about/About";
-import AdjectiveToggleGroup from "./components/adjectivetogglegroup/_adjectivetogglegroup";
-import JohariWindow from "./components/johariwindow/_johariwindow";
+import { BrowserRouter, Route } from "react-router-dom";
 
+//Custom Components
+import Landing from "./components/pages/landing/landing";
+import About from "./components/pages/about/About";
+import Dashboard from "./components/johariwindow/_johariwindow";
+
+//CSS
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+//Data
 import baseAdjectives from "./const/adjectives";
 
 class App extends Component {
@@ -23,18 +29,16 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <div className="App-header">
-          <NavBar />
+      <BrowserRouter>
+        <div>
+          <div className="App-body">
+            <NavBar />
+            <Route exact path="/" component={Landing} />
+            <Route path="/about" component={About} />
+            <Route path="/log-in" component={Dashboard} />
+          </div>
         </div>
-        <div className="App-body">
-          <AdjectiveToggleGroup baseAdjectives={this.state.baseAdjectives} />
-          <JohariWindow
-            selectedAdjectives={this.state.selectedAdjectives}
-            selectedByOthers={this.state.selectedByOthers}
-          />
-        </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }

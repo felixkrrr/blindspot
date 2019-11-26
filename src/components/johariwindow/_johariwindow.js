@@ -31,6 +31,8 @@ class JohariWindow extends Component {
     return hidden;
   };
 
+  computeCounter = item => {};
+
   render() {
     return (
       <div>
@@ -55,7 +57,6 @@ class JohariWindow extends Component {
                 <h4>
                   <Button disabled variant="secondary" key={i}>
                     {item}
-                    <Badge> 9 </Badge>
                   </Button>
                 </h4>
               );
