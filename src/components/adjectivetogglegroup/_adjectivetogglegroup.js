@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AdjectiveToggle from "../button/adjectivetoggle/_adjectivetoggle";
+import AdjectiveSelection from "../adjectiveselection/adjectiveselection";
 
 class AdjectiveToggleGroup extends Component {
   state = {
@@ -26,10 +27,9 @@ class AdjectiveToggleGroup extends Component {
     console.log(this.state.selectedAdjectives);
     return (
       <div>
-        <h2>Your adjectives</h2>
-        {this.state.selectedAdjectives.map(function(item, i) {
-          return <AdjectiveToggle adjective={item} key={i} />;
-        }, this)}
+        <AdjectiveSelection
+          selectedAdjectives={this.state.selectedAdjectives}
+        />
         <h2>Select</h2>
         {this.props.baseAdjectives.map(function(item, i) {
           return (

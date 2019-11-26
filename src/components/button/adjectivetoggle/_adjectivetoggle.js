@@ -10,10 +10,10 @@ class AdjectiveToggle extends Component {
   }
 
   selectAdjective = props => {
-    const newState = !this.state.toggle;
+    this.state.toggle !== true && this.props.onSelect(this.props.adjective); //if not selected then select adjective
+    this.state.toggle !== false && this.props.onDeSelect(this.props.adjective); // if selected then deSelect adjective
+    const newState = !this.state.toggle; //flip toggle state
     this.setState({ toggle: newState });
-    this.state.toggle === false && this.props.onSelect(this.props.adjective);
-    this.state.toggle === true && this.props.onDeSelect(this.props.adjective);
   };
 
   render() {
