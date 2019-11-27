@@ -1,27 +1,36 @@
 import React, { Component } from "react";
 import Badge from "react-bootstrap/Badge";
+import Button from "react-bootstrap/Button";
+import { connect } from "react-redux";
 
 class AdjectiveSelection extends Component {
   render() {
     return (
       <div>
-        <h2>Your adjectives</h2>
-        <h4>
+        <h3>Your adjectives</h3>
+        <h5>
           {this.props.selectedAdjectives.map(function(item, i) {
             return (
-              <Badge
-                pill
+              <Button
+                className="m-1"
+                disabled
                 variant="secondary"
-                key={i}
-                Style="margin-right: 10px"
+                key={"selected" + i}
+                size="sm"
               >
                 {item}
-              </Badge>
+              </Button>
             );
           }, this)}
-        </h4>
+        </h5>
       </div>
     );
   }
 }
-export default AdjectiveSelection;
+
+const mapStatetoProps = state => {
+  return {
+    selectedAdjectives: state.selectedAdjectives
+  };
+};
+export default connect(mapStatetoProps)(AdjectiveSelection);

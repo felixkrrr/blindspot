@@ -49,3 +49,35 @@ h6 {
 button {
   border-radius: 50px !important;
 }
+
+.content {
+  text-align: left;
+  box-sizing: content-box;
+}
+
+.container {
+  justify-content: center;
+  display: inline-block;
+  background-color: #f8f9fa;
+}
+
+.adjective-ul {
+  -moz-column-fill: balance;
+  column-fill: balance;
+  column-count: auto;
+
+  padding-left: 0 !important;
+}
+
+.adjective-li {
+  margin-left: 0;
+}
+
+.adjective-pill {
+  min-width: 120px;
+}
+
+.col {
+  padding-left: 0px !important;
+  margin-bottom: 10px !important;
+}
