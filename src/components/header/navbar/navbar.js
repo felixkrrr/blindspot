@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const NavBar = props => {
   return (
@@ -15,12 +15,21 @@ const NavBar = props => {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/about">About</Nav.Link>
+          <NavLink exact to="/" className="nav-link">
+            Home
+          </NavLink>
+
+          <NavLink to="/about" className="nav-link">
+            About
+          </NavLink>
         </Nav>
         <Nav>
-          <Nav.Link href="/create-account">Create account</Nav.Link>
-          <Nav.Link href="/log-in">Log in</Nav.Link>
+          <NavLink to="/create-account" className="nav-link">
+            Create account
+          </NavLink>
+          <NavLink to="/log-in" className="nav-link">
+            Log in
+          </NavLink>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

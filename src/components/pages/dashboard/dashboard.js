@@ -1,16 +1,13 @@
 import React, { Component } from "react";
-import AdjectiveToggleGroup from "src/components/adjectivetogglegroup/_adjectivetogglegroup";
-import JohariWindow from "src/components/johariwindow/_johariwindow";
+import AdjectiveToggleGroup from "../../adjectivetogglegroup/_adjectivetogglegroup";
+import JohariWindow from "../../johariwindow/_johariwindow";
 
 class Dashboard extends Component {
   render() {
     return (
-      <div>
-        <AdjectiveToggleGroup baseAdjectives={this.state.baseAdjectives} />
-        <JohariWindow
-          selectedAdjectives={this.state.selectedAdjectives}
-          selectedByOthers={this.state.selectedByOthers}
-        />
+      <div className="container">
+        <AdjectiveToggleGroup />
+        <JohariWindow />
       </div>
     );
   }

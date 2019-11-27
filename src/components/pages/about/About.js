@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import Table from "react-bootstrap/Table";
-import "./about.css";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
+
 import baseAdjectives from "../../../const/adjectives";
 
 class About extends Component {
@@ -16,34 +19,44 @@ class About extends Component {
             your friends and colleagues to describe you from the same list, a
             grid of overlap and difference can be built up.
           </p>
-          <h3>The quadrants</h3>
-          <ul>
-            <li>
-              Open: selected by both, the subject and peers. These are traits
-              that subject and peers perceive.
-            </li>
-            <li>
-              Blind: not selected by subjects, but only by their peers. These
-              represent what others perceive but the subject does not.
-            </li>
-            <li>
-              Hidden: selected by the subject, but not by any of their peers.
-              These are things the peers are either unaware of, or that are
-              untrue but for the subject’s claim.
-            </li>
-            <li>
-              Unknown: selected by neither subject nor peers selected. They
-              represent subject’s behaviors or motives that no one participating
-              recognizes—either because they do not apply or because of
-              collective ignorance of these traits.
-            </li>
-          </ul>
-          <h3>The adjectives</h3>
-          <Table>
-            {baseAdjectives.map(function(name, index) {
-              return <tr key={index}>{name}</tr>;
+
+          <Container fluid="true">
+            <Row>
+              <Col className="col" sm="12" md="4" xs="12">
+                <h5 key="quandrant1">Open</h5>
+                Open characteristics are selected by both, the subject and
+                peers. These are traits that subject and peers perceive.
+              </Col>
+              <Col className="col" sm="12" md="4" xs="12">
+                <h5 key="quandrant2">Blind</h5>
+                Blind characteristics are not selected by subjects, but only by
+                their peers. These represent what others perceive but the
+                subject does not.
+              </Col>
+              <Col className="col" sm="12" md="4" xs="12">
+                <h5 key="quandrant3">Hidden</h5>
+                Hidden characteristics are selected by the subject, but not by
+                any of their peers. These are things the peers are either
+                unaware of, or that are untrue but for the subject’s claim.
+              </Col>
+            </Row>
+          </Container>
+
+          <h3 key="adjective">The adjectives</h3>
+          <ul className="adjective-ul">
+            {baseAdjectives.map(function(name, i) {
+              return (
+                <Button
+                  className="adjective-pill"
+                  variant="outline-secondary m-1 "
+                  size="sm"
+                  key={"adjective" + i}
+                >
+                  {name}
+                </Button>
+              );
             })}
-          </Table>
+          </ul>
         </div>
       </div>
     );

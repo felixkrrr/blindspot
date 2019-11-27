@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import Badge from "react-bootstrap/Badge";
+import { connect } from "react-redux";
+
 import Button from "react-bootstrap/Button";
 import "./_johariwindow.css";
 
@@ -36,41 +37,42 @@ class JohariWindow extends Component {
   render() {
     return (
       <div>
-        <h2>Your Johari Window</h2>
+        <h3>Your Johari Window</h3>
         <div className="johariWindow">
           <div className="window">
-            <h4>Open</h4>
+            <h5>Open</h5>
+
             {this.computeOpen().map(function(item, i) {
               return (
-                <h4>
-                  <Button disabled variant="secondary" key={i}>
+                <h5 key={"open" + item}>
+                  <Button disabled size="sm" variant="secondary" key={item + i}>
                     {item}
                   </Button>
-                </h4>
+                </h5>
               );
             })}
           </div>
           <div className="window">
-            <h4>Blind</h4>
+            <h5 key="blind">Blind</h5>
             {this.computeBlind().map(function(item, i) {
               return (
-                <h4>
-                  <Button disabled variant="secondary" key={i}>
+                <h5 key={"blind" + item}>
+                  <Button disabled size="sm" variant="secondary" key={item + i}>
                     {item}
                   </Button>
-                </h4>
+                </h5>
               );
             })}
           </div>
           <div className="window">
-            <h4>Hidden</h4>
+            <h5 key="hidden">Hidden</h5>
             {this.computeHidden().map(function(item, i) {
               return (
-                <h4>
-                  <Button disabled variant="secondary" key={i}>
+                <h5 key={"hidden" + item}>
+                  <Button disabled size="sm" variant="secondary" key={item + i}>
                     {item}
                   </Button>
-                </h4>
+                </h5>
               );
             })}
           </div>
@@ -79,4 +81,13 @@ class JohariWindow extends Component {
     );
   }
 }
-export default JohariWindow;
+
+const mapStatetoProps = state => {
+  return {
+    selectedAdjectives: state.selectedAdjectives,
+    baseAdjectives: state.baseAdjectives,
+    selectedByOthers: state.selectedByOthers
+  };
+};
+
+export default connect(mapStatetoProps)(JohariWindow);
