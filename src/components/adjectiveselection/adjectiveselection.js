@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Badge from "react-bootstrap/Badge";
+//import Badge from "react-bootstrap/Badge";
 import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
 
@@ -30,7 +30,7 @@ class AdjectiveSelection extends Component {
 
 const mapStatetoProps = state => {
   return {
-    selectedAdjectives: state.selectedAdjectives
+    selectedAdjectives: state.adjectives.selectedAdjectives
   };
 };
 export default connect(mapStatetoProps)(AdjectiveSelection);

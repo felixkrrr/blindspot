@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import {
+  deSelectAdjectives,
+  selectAdjectives
+} from "../../store/actions/adjectiveActions";
+
 //Custom
 import AdjectiveToggle from "../button/adjectivetoggle/_adjectivetoggle";
 import AdjectiveSelection from "../adjectiveselection/adjectiveselection";
@@ -44,18 +49,18 @@ class AdjectiveToggleGroup extends Component {
 
 const mapStatetoProps = state => {
   return {
-    selectedAdjectives: state.selectedAdjectives,
-    baseAdjectives: state.baseAdjectives
+    selectedAdjectives: state.adjectives.selectedAdjectives,
+    baseAdjectives: state.adjectives.baseAdjectives
   };
 };
 
 const mapDispatchtoProps = dispatch => {
   return {
     deSelectAdjective: adjective => {
-      dispatch({ type: "DESELECT_ADJECTIVE", adjective: adjective });
+      dispatch(deSelectAdjectives(adjective));
     },
     selectAdjectives: adjective => {
-      dispatch({ type: "SELECT_ADJECTIVE", adjective: adjective });
+      dispatch(selectAdjectives(adjective));
     }
   };
 };

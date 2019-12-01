@@ -1,3 +1,20 @@
+import authReducer from "./authReducer";
+import adjectiveReducer from "./adjectiveReducer";
+import { combineReducers } from "redux";
+import { firestoreReducer } from "redux-firestore";
+import { firebaseReducer } from "react-redux-firebase";
+
+const rootReducer = combineReducers({
+  auth: authReducer,
+  adjectives: adjectiveReducer,
+  firestore: firestoreReducer,
+  firebase: firebaseReducer
+});
+
+export default rootReducer;
+
+/*
+
 import baseAdjectives from "../const/adjectives";
 
 const initState = {
@@ -35,3 +52,5 @@ const rootReducer = (state = initState, action) => {
 };
 
 export default rootReducer;
+
+*/
