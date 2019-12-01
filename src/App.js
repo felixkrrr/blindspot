@@ -7,8 +7,8 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Landing from "./components/pages/landing/landing";
 import About from "./components/pages/about/About";
 import Dashboard from "./components/pages/dashboard/dashboard";
-import AdjectiveSelection from "./components/adjectiveselection/adjectiveselection";
-import AdjectiveToggleGroup from "./components/adjectivetogglegroup/_adjectivetogglegroup";
+import SignIn from "./components/auth/signin";
+import SignUp from "./components/auth/signup";
 
 //CSS
 import "./App.css";
@@ -24,7 +24,9 @@ class App extends Component {
 
             <Route exact path="/" component={Landing} />
             <Route path="/about" component={About} />
-            <Route path="/log-in" component={Dashboard} />
+            <Route path="/signin" component={SignIn} />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/dashboard" component={Dashboard} />
           </div>
         </div>
       </BrowserRouter>

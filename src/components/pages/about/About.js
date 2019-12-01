@@ -4,7 +4,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
-import baseAdjectives from "../../../const/adjectives";
+import baseAdjectives from "../../../store/const/adjectives";
 
 class About extends Component {
   render() {

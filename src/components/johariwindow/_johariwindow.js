@@ -84,9 +84,9 @@ class JohariWindow extends Component {
 
 const mapStatetoProps = state => {
   return {
-    selectedAdjectives: state.selectedAdjectives,
-    baseAdjectives: state.baseAdjectives,
-    selectedByOthers: state.selectedByOthers
+    selectedAdjectives: state.adjectives.selectedAdjectives,
+    baseAdjectives: state.adjectives.baseAdjectives,
+    selectedByOthers: state.adjectives.selectedByOthers
   };
 };
 

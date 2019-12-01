@@ -1,8 +1,14 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import LoggedOutLinks from "./loggedOutLinks";
+import LoggedInLinks from "./loggedInLinks";
+
+import { connect } from "react-redux";
 
 const NavBar = props => {
+  const { auth } = props;
+  const links = auth.uid ? <LoggedInLinks /> : <LoggedOutLinks />;
   return (
     <Navbar
       sticky="top"
@@ -18,22 +24,19 @@ const NavBar = props => {
           <NavLink exact to="/" className="nav-link">
             Home
           </NavLink>
-
           <NavLink to="/about" className="nav-link">
             About
           </NavLink>
         </Nav>
-        <Nav>
-          <NavLink to="/create-account" className="nav-link">
-            Create account
-          </NavLink>
-          <NavLink to="/log-in" className="nav-link">
-            Log in
-          </NavLink>
-        </Nav>
+
+        {auth.isLoaded && links}
       </Navbar.Collapse>
     </Navbar>
   );
 };
 
-export default NavBar;
+const mapStateToProps = state => {
+  return { auth: state.firebase.auth };
+};
+
+export default connect(mapStateToProps)(NavBar);

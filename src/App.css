@@ -12,6 +12,7 @@
 
   background-color: #f8f9fa;
   margin: 0 0;
+  flex-flow: column;
 }
 
 .App-header {
@@ -50,6 +51,10 @@ button {
   border-radius: 50px !important;
 }
 
+input {
+  border-radius: 50px !important;
+}
+
 .content {
   text-align: left;
   box-sizing: content-box;
@@ -59,6 +64,13 @@ button {
   justify-content: center;
   display: inline-block;
   background-color: #f8f9fa;
+}
+
+.flex-container {
+  justify-content: center;
+  display: flex;
+  background-color: #f8f9fa;
+  height: 85vh !important;
 }
 
 .adjective-ul {
@@ -80,4 +92,13 @@ button {
 .col {
   padding-left: 0px !important;
   margin-bottom: 10px !important;
+}
+
+.signin-card {
+  max-width: 300px !important;
+  text-align: left;
+  box-sizing: content-box;
+  margin: auto;
+  align-content: center;
+  flex-grow: 1;
 }
