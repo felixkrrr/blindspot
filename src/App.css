@@ -9,7 +9,6 @@
 
 .App-body {
   min-height: 100vh;
-
   background-color: #f8f9fa;
   margin: 0 0;
   flex-flow: column;
@@ -62,7 +61,7 @@ input {
 
 .container {
   justify-content: center;
-  display: inline-block;
+  display: block;
   background-color: #f8f9fa;
 }
 

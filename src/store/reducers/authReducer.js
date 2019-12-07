@@ -1,5 +1,3 @@
-import { auth } from "firebase";
-
 const initState = {
   authError: null
 };
@@ -18,7 +16,6 @@ const authReducer = (state = initState, action) => {
         ...state,
         authError: null
       };
-
     case "SIGNOUT_SUCCESS":
       console.log("signout success");
       return {
