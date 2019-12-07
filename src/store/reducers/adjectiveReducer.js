@@ -32,6 +32,23 @@ const adjectiveReducer = (state = initState, action) => {
         ...state,
         selectedAdjectives: newSelectedAdjectives1
       };
+
+    case "UPDATE_BASE_ADJECTIVES":
+      console.log("Baseadjectives updated");
+      return {
+        ...state
+      };
+
+    case "UPDATE_BASE_ADJECTIVES_SUCCESS":
+      console.log("update baseAdjectives success");
+      return {
+        ...state
+      };
+    case "UPDATE_BASE_ADJECTIVES_ERROR":
+      console.log("update baseAdjectives err");
+      return {
+        ...state
+      };
     default:
       return state;
   }
