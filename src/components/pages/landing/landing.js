@@ -10,7 +10,7 @@ class Landing extends Component {
         <div className="inner">
           <h1>Better understand the relationship with yourself and others.</h1>
           <span className="span">
-            <Link to="/create-account">
+            <Link to="/signup">
               <Button variant="dark" size="lg">
                 Get Started!
               </Button>

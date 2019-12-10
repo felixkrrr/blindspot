@@ -12,11 +12,12 @@ var firebaseConfig = {
   messagingSenderId: "864873638992",
   appId: "1:864873638992:web:9e02d85f45d5f7ed2af555",
   measurementId: "G-96L0WCV9ND",
-  userProfile: "users",
-  useFirestoreForProfile: true,
   attachAuthIsReady: true
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+// Initialize other services on firebase instance
+firebase.firestore();
 
 export default firebase;

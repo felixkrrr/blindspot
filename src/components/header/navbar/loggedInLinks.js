@@ -5,13 +5,12 @@ import { connect } from "react-redux";
 import { signOut } from "../../../store/actions/authActions";
 
 const LoggedInLinks = props => {
+  const { auth } = props;
   return (
     <Nav>
-      <Navbar.Text className="nav-text">felix.krauth@gmail.com</Navbar.Text>
-      <NavLink to="/dashboard" className="nav-link">
-        Dashboard
-      </NavLink>
-      <NavLink to="" onClick={props.signOut} className="nav-link">
+      <Navbar.Text className="nav-text">{auth.email}</Navbar.Text>
+
+      <NavLink exact to="/" onClick={props.signOut} className="nav-link">
         Log out
       </NavLink>
     </Nav>
@@ -20,7 +19,8 @@ const LoggedInLinks = props => {
 
 const mapStateToProps = state => {
   return {
-    email: state.auth.authError
+    email: state.auth.authError,
+    auth: state.firebase.auth
   };
 };
 

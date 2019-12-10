@@ -1,7 +1,9 @@
 .johariWindow {
   display: flex;
+  flex-flow: column;
 }
 
 .window {
   min-width: 150px;
+  margin-bottom: 15px;
 }
