@@ -1,6 +1,12 @@
 import React, { Component } from "react";
+
 import { connect } from "react-redux";
 
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
+import Badge from "react-bootstrap/Badge";
+import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import "./_johariwindow.css";
 
@@ -32,52 +38,87 @@ class JohariWindow extends Component {
     return hidden;
   };
 
-  computeCounter = item => {};
+  computeCounter = () => {
+    const count = this.props.selectedByOthers.count;
+    return count;
+  };
 
   render() {
     return (
-      <div>
-        <h3>Your Johari Window</h3>
-        <div className="johariWindow">
-          <div className="window">
-            <h5>Open</h5>
+      <Card bg="light">
+        <Card.Header>
+          <Container>
+            <Row className="card-row">
+              <Col className="card-header-cols">
+                <h5 className="card-title">Your Johari Window</h5>
+              </Col>
+              <Col className="text-right">
+                <Button
+                  className="m-1"
+                  variant="outline-secondary"
+                  key={"editSelectedAdjectives"}
+                  size="sm"
+                >
+                  Share link
+                </Button>
+              </Col>
+            </Row>
+          </Container>
+        </Card.Header>
+        <Card.Body>
+          <div className="johariWindow">
+            <div className="window">
+              <h6>Open</h6>
 
-            {this.computeOpen().map(function(item, i) {
-              return (
-                <h5 key={"open" + item}>
-                  <Button disabled size="sm" variant="secondary" key={item + i}>
+              {this.computeOpen().map(function(item, i) {
+                return (
+                  <Button
+                    disabled
+                    size="sm"
+                    variant="secondary"
+                    className="m-1"
+                    key={item + i}
+                  >
                     {item}
                   </Button>
-                </h5>
-              );
-            })}
-          </div>
-          <div className="window">
-            <h5 key="blind">Blind</h5>
-            {this.computeBlind().map(function(item, i) {
-              return (
-                <h5 key={"blind" + item}>
-                  <Button disabled size="sm" variant="secondary" key={item + i}>
+                );
+              })}
+            </div>
+            <div className="window">
+              <h6 key="blind">Blind</h6>
+              {this.computeBlind().map(function(item, i) {
+                return (
+                  <Button
+                    disabled
+                    size="sm"
+                    variant="secondary"
+                    className="m-1"
+                    key={item + i}
+                  >
                     {item}
                   </Button>
-                </h5>
-              );
-            })}
-          </div>
-          <div className="window">
-            <h5 key="hidden">Hidden</h5>
-            {this.computeHidden().map(function(item, i) {
-              return (
-                <h5 key={"hidden" + item}>
-                  <Button disabled size="sm" variant="secondary" key={item + i}>
+                );
+              })}
+            </div>
+            <div className="window">
+              <h6 key="hidden">Hidden</h6>
+              {this.computeHidden().map(function(item, i) {
+                return (
+                  <Button
+                    disabled
+                    size="sm"
+                    variant="secondary"
+                    className="m-1"
+                    key={item + i}
+                  >
                     {item}
                   </Button>
-                </h5>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </div>
+        </Card.Body>
+      </Card>
     );
   }
 }

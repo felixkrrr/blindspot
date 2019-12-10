@@ -11,6 +11,15 @@ const initState = {
   ]
 };
 
+/*
+const initState = {
+  baseAdjectives: [],
+  selectedAdjectives: [],
+  selectedByOthers: []
+};
+
+*/
+
 const adjectiveReducer = (state = initState, action) => {
   switch (action.type) {
     case "DESELECT_ADJECTIVE":
@@ -34,7 +43,7 @@ const adjectiveReducer = (state = initState, action) => {
       };
 
     case "UPDATE_BASE_ADJECTIVES":
-      console.log("Baseadjectives updated");
+      console.log("baseadjectives updated");
       return {
         ...state
       };
@@ -49,6 +58,7 @@ const adjectiveReducer = (state = initState, action) => {
       return {
         ...state
       };
+
     default:
       return state;
   }

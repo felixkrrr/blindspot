@@ -8,7 +8,28 @@ import { connect } from "react-redux";
 
 const NavBar = props => {
   const { auth } = props;
+  //additional navigation that shows "Log In" or "Log Out" depending on login status
   const links = auth.uid ? <LoggedInLinks /> : <LoggedOutLinks />;
+
+  //base Navigation that shows Home when logged out and Dashboard when logged in
+  const base = (
+    <Nav className="mr-auto">
+      {!auth.uid && (
+        <NavLink exact to="/" className="nav-link">
+          Home
+        </NavLink>
+      )}
+      {auth.uid && (
+        <NavLink to="/dashboard" className="nav-link">
+          Dashboard
+        </NavLink>
+      )}
+      <NavLink to="/about" className="nav-link">
+        About
+      </NavLink>
+    </Nav>
+  );
+
   return (
     <Navbar
       sticky="top"
@@ -17,18 +38,11 @@ const NavBar = props => {
       bg="light"
       variant="light"
     >
-      <Navbar.Brand href="/">blindspot</Navbar.Brand>
+      <Navbar.Brand href="">blindspot</Navbar.Brand>
+
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto">
-          <NavLink exact to="/" className="nav-link">
-            Home
-          </NavLink>
-          <NavLink to="/about" className="nav-link">
-            About
-          </NavLink>
-        </Nav>
-
+        {auth.isLoaded && base}
         {auth.isLoaded && links}
       </Navbar.Collapse>
     </Navbar>
