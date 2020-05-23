@@ -3,6 +3,8 @@ import "./landing.css";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+import * as ROUTES from "../../../store/const/routes";
+
 class Landing extends Component {
   render() {
     return (
@@ -10,12 +12,12 @@ class Landing extends Component {
         <div className="inner">
           <h1>Better understand the relationship with yourself and others.</h1>
           <span className="span">
-            <Link to="/signup">
+            <Link to={ROUTES.SIGN_UP}>
               <Button variant="dark" size="lg">
                 Get Started!
               </Button>
             </Link>
-            <Link to="/about">
+            <Link to={ROUTES.ABOUT}>
               <Button variant="outline-dark m-2" size="lg">
                 Learn more
               </Button>

@@ -5,20 +5,28 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 
-import { connect } from "react-redux";
+import baseAdjectives from "../../../store/const/adjectives";
 
-//import { getBaseAdjectives } from "../../store/actions/adjectiveActions";
+import { withFirebase } from "../../Firebase";
 
 class About extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { loading: false, adjectives: [] };
+  }
+
   render() {
+    console.log(baseAdjectives);
     return (
       <div className="container">
         <div className="content">
           <Card className="card-margin" bg="light">
+            <Card.Header>
+              <h5 className="card-title" key="adjective">
+                Background
+              </h5>
+            </Card.Header>
             <Card.Body>
-              <Card.Title>
-                <h5 key="quandrant0">Background</h5>
-              </Card.Title>
               <Card.Text>
                 The Johari Window was invented by Joseph Luft and Harrington
                 Ingham in the 1950s as a model for mapping personality
@@ -30,79 +38,64 @@ class About extends Component {
             </Card.Body>
           </Card>
 
-          <Container fluid="true">
-            <Row>
-              <Col className="col" sm="12" md="4" xs="12">
-                <Card className="card-margin" bg="light">
-                  <Card.Body>
-                    <Card.Title>
-                      <h5 key="quandrant1">Open</h5>
-                    </Card.Title>
-                    <Card.Text>
-                      Open characteristics are selected by both, the subject and
-                      peers. These are traits that subject and peers perceive.
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-              <Col className="col" sm="12" md="4" xs="12">
-                <Card className="card-margin" bg="light">
-                  <Card.Body>
-                    <Card.Title>
-                      <h5 key="quandrant2">Blind</h5>
-                    </Card.Title>
-                    <Card.Text>
-                      Blind characteristics are not selected by subjects, but
-                      only by their peers. These represent what others perceive
-                      but the subject does not.
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-              <Col className="col" sm="12" md="4" xs="12">
-                <Card className="card-margin" bg="light">
-                  <Card.Body>
-                    <Card.Title>
-                      <h5 key="quandrant3">Hidden</h5>
-                    </Card.Title>
-                    <Card.Text>
-                      Hidden characteristics are selected by the subject, but
-                      not by any of their peers. These are things the peers are
-                      either unaware of, or that are untrue but for the
-                      subject’s claim.
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-            </Row>
-          </Container>
+          <Card bg="light">
+            <Card.Header>
+              <h5 className="card-title" key="adjective">
+                The Quadrants
+              </h5>
+            </Card.Header>
+            <Card.Body>
+              <Container fluid="true">
+                <Row>
+                  <Col className="col" sm="12" md="4" xs="12">
+                    <h6 key="quandrant1">Open</h6>
+                    Open characteristics are selected by both, the subject and
+                    peers. These are traits that subject and peers perceive.
+                  </Col>
+                  <Col className="col" sm="12" md="4" xs="12">
+                    <h6 key="quandrant2">Blind</h6>
+                    Blind characteristics are not selected by subjects, but only
+                    by their peers. These represent what others perceive but the
+                    subject does not.
+                  </Col>
+                  <Col className="col" sm="12" md="4" xs="12">
+                    <h6 key="quandrant3">Hidden</h6>
+                    Hidden characteristics are selected by the subject, but not
+                    by any of their peers. These are things the peers are either
+                    unaware of, or that are untrue but for the subject’s claim.
+                  </Col>
+                </Row>
+              </Container>
+            </Card.Body>
+          </Card>
 
-          <h3 key="adjective">The adjectives</h3>
-          <ul className="adjective-ul">
-            {this.props.adjectives.map(function(name, i) {
-              return (
-                <Button
-                  className="adjective-pill"
-                  variant="outline-secondary m-1 "
-                  size="sm"
-                  key={"adjective" + i}
-                >
-                  {name}
-                </Button>
-              );
-            })}
-          </ul>
+          <Card className="card-margin" bg="light">
+            <Card.Header>
+              <h5 className="card-title" key="adjective">
+                The adjectives
+              </h5>
+            </Card.Header>
+            <Card.Body>
+              <ul className="adjective-ul adjective-toggle-container">
+                {baseAdjectives.map(function(name, i) {
+                  return (
+                    <Button
+                      className="adjective-pill"
+                      variant="outline-secondary m-1 "
+                      size="sm"
+                      key={"adjective" + i}
+                    >
+                      {name}
+                    </Button>
+                  );
+                })}
+              </ul>
+            </Card.Body>
+          </Card>
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  console.log(state);
-  return {
-    adjectives: state.adjectives.baseAdjectives
-  };
-};
-
-export default connect(mapStateToProps)(About);
+export default withFirebase(About);

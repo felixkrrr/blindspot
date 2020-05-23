@@ -8,10 +8,6 @@ import Container from "react-bootstrap/Container";
 
 //firestore relevant
 
-import { connect } from "react-redux";
-import { firestoreConnect } from "react-redux-firebase";
-import { compose } from "redux";
-
 class AdjectiveSelection extends Component {
   render() {
     return (
@@ -37,7 +33,7 @@ class AdjectiveSelection extends Component {
           </Container>
         </Card.Header>
         <Card.Body>
-          {this.props.selectedAdjectives.map(function(item, i) {
+          {this.props.adjectivesSelectedBySelf.map(function(item, i) {
             return (
               <Button
                 disabled
@@ -51,7 +47,7 @@ class AdjectiveSelection extends Component {
             );
           }, this)}
 
-          {this.props.selectedAdjectives.length === 0 ? (
+          {this.props.adjectivesSelectedBySelf.length === 0 ? (
             <p className="empty-text">
               You have not selected any adjectives...
             </p>
@@ -62,22 +58,4 @@ class AdjectiveSelection extends Component {
   }
 }
 
-const mapStatetoProps = state => {
-  console.log(state);
-  return {
-    selectedAdjectives: state.adjectives.selectedAdjectives,
-    selectedAdjectivesNew: state.firestore.data,
-    auth: state.firebase.auth
-  };
-};
-
-export default compose(
-  connect(mapStatetoProps),
-  firestoreConnect(props => {
-    return [
-      {
-        collection: "users/${auth.uid}/selectedBySelf"
-      }
-    ];
-  })
-)(AdjectiveSelection);
+export default AdjectiveSelection;

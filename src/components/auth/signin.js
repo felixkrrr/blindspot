@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { connect } from "react-redux";
+
 import { signIn } from "../../store/actions/authActions";
 import { Redirect } from "react-router-dom";
 
@@ -65,16 +65,4 @@ class SignIn extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    authError: state.auth.authError,
-    auth: state.firebase.auth
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    signIn: creds => dispatch(signIn(creds))
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default SignIn;
