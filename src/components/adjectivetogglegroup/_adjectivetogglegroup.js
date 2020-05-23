@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
@@ -7,19 +6,20 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 
-import {
-  deSelectAdjectives,
-  selectAdjectives
-} from "../../store/actions/adjectiveActions";
+import baseAdjectives from "../../store/const/adjectives";
+import { withFirebase } from "../../components/Firebase";
 
 //Custom
 import AdjectiveToggle from "../button/adjectivetoggle/_adjectivetoggle";
 
 class AdjectiveToggleGroup extends Component {
+  state = { toggledAdjectives: this.props.adjectivesSelectedBySelf };
+
   handleSelect = adjective => {
     //Checks if item is already selected; not to select it again
-    if (!this.props.selectedAdjectives.includes(adjective)) {
-      this.props.selectAdjectives(adjective);
+    if (!this.state.toggledAdjectives.includes(adjective)) {
+      const newToggledAdjectives = [...this.state.toggledAdjectives, adjective];
+      this.setState({ toggledAdjectives: newToggledAdjectives });
     } else {
       console.log("Item was already in Array");
     }
@@ -27,11 +27,24 @@ class AdjectiveToggleGroup extends Component {
 
   handleDeSelect = adjective => {
     //removes variable input from array
-    this.props.deSelectAdjective(adjective);
+
+    let newToggledAdjectives = this.state.toggledAdjectives.filter(
+      item => item !== adjective
+    );
+    this.setState({ toggledAdjectives: newToggledAdjectives });
+  };
+
+  //build function to get uid later
+
+  saveChanges = () => {
+    this.props.firebase.updateAdjectivesSelectedBySelf(
+      "v0tq8YFwb1bRb3jut22iSPhljUw2",
+      this.state.toggledAdjectives
+    );
   };
 
   render() {
-    console.log(this.props.selectedAdjectives);
+    console.log(this.state.toggledAdjectives);
     return (
       <Card bg="light">
         <Card.Header>
@@ -43,35 +56,26 @@ class AdjectiveToggleGroup extends Component {
               <Col className="text-right">
                 <Button
                   className="m-1"
-                  variant="secondary"
-                  key={"editSelectedAdjectives"}
+                  variant="outline-secondary"
+                  key={"Save"}
                   size="sm"
-                  onClick={this.props.onEdit}
+                  onClick={(this.saveChanges(), this.props.onEdit)}
                 >
                   Save changes
-                </Button>
-                <Button
-                  className="m-0"
-                  variant="outline-secondary"
-                  key={"editSelectedAdjectives"}
-                  size="sm"
-                  onClick={this.props.onEdit}
-                >
-                  Discard changes
                 </Button>
               </Col>
             </Row>
           </Container>
         </Card.Header>
         <Card.Body className="adjective-toggle-container">
-          {this.props.baseAdjectives.map(function(item, i) {
+          {baseAdjectives.map(function(item, i) {
             return (
               <AdjectiveToggle
                 adjective={item}
                 key={i}
                 onSelect={this.handleSelect}
                 onDeSelect={this.handleDeSelect}
-                selected={this.props.selectedAdjectives.includes(item)}
+                selected={this.state.toggledAdjectives.includes(item)}
               />
             );
           }, this)}
@@ -81,25 +85,4 @@ class AdjectiveToggleGroup extends Component {
   }
 }
 
-const mapStatetoProps = state => {
-  return {
-    selectedAdjectives: state.adjectives.selectedAdjectives,
-    baseAdjectives: state.adjectives.baseAdjectives
-  };
-};
-
-const mapDispatchtoProps = dispatch => {
-  return {
-    deSelectAdjective: adjective => {
-      dispatch(deSelectAdjectives(adjective));
-    },
-    selectAdjectives: adjective => {
-      dispatch(selectAdjectives(adjective));
-    }
-  };
-};
-
-export default connect(
-  mapStatetoProps,
-  mapDispatchtoProps
-)(AdjectiveToggleGroup);
+export default withFirebase(AdjectiveToggleGroup);

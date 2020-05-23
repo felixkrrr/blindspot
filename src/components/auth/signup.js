@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { connect } from "react-redux";
-import { signUp } from "../../store/actions/authActions";
+import { Link } from "react-router-dom";
+
 import { Redirect } from "react-router-dom";
+
+const SignUpPage = () => (
+  <div>
+    <h1>SignUp</h1>
+    <SignUp />
+  </div>
+);
 
 class SignUp extends Component {
   state = {
@@ -82,17 +89,12 @@ class SignUp extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    auth: state.firebase.auth,
-    authError: state.auth.authError
-  };
-};
+const SignUpLink = () => (
+  <p>
+    Don't have an account? <Link to="/signup">Sign Up</Link>{" "}
+  </p>
+);
 
-const mapDispatchToProps = dispatch => {
-  return {
-    signUp: newUser => dispatch(signUp(newUser))
-  };
-};
+export default SignUpPage;
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+export { SignUp, SignUpLink };

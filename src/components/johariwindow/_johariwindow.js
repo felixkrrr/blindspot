@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import { connect } from "react-redux";
-
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
@@ -11,27 +9,26 @@ import Button from "react-bootstrap/Button";
 import "./_johariwindow.css";
 
 class JohariWindow extends Component {
+  //CUSTOM FUNCTIONS FOR JOHARI CALCULATION
   computeOpen = () => {
-    const own = this.props.selectedAdjectives;
-    const others = this.props.selectedByOthers.map(function(obj) {
-      return obj.adjective;
-    });
+    const own = this.props.adjectivesSelectedBySelf;
+    const others = this.props.adjectivesSelectedByOthers;
+
     let open = own.filter(x => others.includes(x));
     return open;
   };
 
   computeBlind = () => {
-    const own = this.props.selectedAdjectives;
-    const others = this.props.selectedByOthers.map(function(obj) {
-      return obj.adjective;
-    });
+    const own = this.props.adjectivesSelectedBySelf;
+    const others = this.props.adjectivesSelectedByOthers;
+
     let blind = others.filter(x => !own.includes(x));
     return blind;
   };
 
   computeHidden = () => {
-    const own = this.props.selectedAdjectives;
-    const others = this.props.selectedByOthers.map(function(obj) {
+    const own = this.props.adjectivesSelectedBySelf;
+    const others = this.props.adjectivesSelectedByOthers.map(function(obj) {
       return obj.adjective;
     });
     let hidden = own.filter(x => !others.includes(x));
@@ -39,7 +36,7 @@ class JohariWindow extends Component {
   };
 
   computeCounter = () => {
-    const count = this.props.selectedByOthers.count;
+    const count = this.props.adjectivesSelectedByOthers.count;
     return count;
   };
 
@@ -68,7 +65,7 @@ class JohariWindow extends Component {
         <Card.Body>
           <div className="johariWindow">
             <div className="window">
-              <h6>Open</h6>
+              <h6 key="open">Open</h6>
 
               {this.computeOpen().map(function(item, i) {
                 return (
@@ -123,12 +120,4 @@ class JohariWindow extends Component {
   }
 }
 
-const mapStatetoProps = state => {
-  return {
-    selectedAdjectives: state.adjectives.selectedAdjectives,
-    baseAdjectives: state.adjectives.baseAdjectives,
-    selectedByOthers: state.adjectives.selectedByOthers
-  };
-};
-
-export default connect(mapStatetoProps)(JohariWindow);
+export default JohariWindow;
